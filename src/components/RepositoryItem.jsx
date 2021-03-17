@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         paddingLeft: 60
     },
     language: {
-        backgroundColor: theme.colors.languageBackground,
+        backgroundColor: theme.colors.primary,
         color: 'white',
         alignSelf:"flex-start",
         padding: 3
