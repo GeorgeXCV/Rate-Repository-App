@@ -5,6 +5,10 @@ import Constants from 'expo-constants';
 import Text from './Text';
 import theme from '../theme';
 import AppBarTab from './AppBarTab'
+import AuthStorageContext from "../contexts/AuthStorageContext";
+import { GET_USER } from "../graphql/queries";
+import { useContext } from 'react';
+import { useQuery, useApolloClient } from '@apollo/client';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,11 +20,26 @@ const styles = StyleSheet.create({
   }
 });
 
-const temp = () => {
-    return null;
-}
-
 const AppBar = () => {
+  const apolloClient = useApolloClient();
+  const authStorage = useContext(AuthStorageContext);
+  const { data, error, loading }  = useQuery(GET_USER, {
+    fetchPolicy: "cache-and-network",
+  });
+
+  let loggedIn = false;
+
+  if (data) {
+      if (data.authorizedUser) {
+        loggedIn = true
+      }
+  } 
+  
+  const signOut = async () => {
+    await authStorage.removeAccessToken();
+    apolloClient.resetStore();
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
@@ -28,14 +47,21 @@ const AppBar = () => {
         to="/"
         component={AppBarTab}
         text={"Repositories"}
-        onPress={temp}
       />
-      <Link
-        to="/signin"
-        component={AppBarTab}
-        text={"Sign in"}
-        onPress={temp}
-      />
+      {loggedIn ? (
+        <Link
+          to="/"
+          component={AppBarTab}
+          text={"Sign Out"}
+          onPress={signOut}
+        />
+      ) : (
+        <Link
+          to="/signin"
+          component={AppBarTab}
+          text={"Sign in"}
+        />
+      )}
       </ScrollView>
   </View>
   )
