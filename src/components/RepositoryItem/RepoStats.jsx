@@ -22,24 +22,24 @@ const styles = StyleSheet.create({
 const RepoStats = ({ item }) => {
     return (
         <View style={styles.stats}>
-        <Text fontWeight="bold" align='center' fontSize="subheading"> {
+        <Text fontWeight="bold" align='center' fontSize="subheading" testID="starCount"> {
             formatValue(item.stargazersCount)} 
             {"\n"}
             <Text color='textSecondary'align='center' fontSize="subheading">Stars</Text>
         </Text>
 
-        <Text fontWeight="bold" align='center' fontSize="subheading">
+        <Text fontWeight="bold" align='center' fontSize="subheading" testID="forkCount">
             {formatValue(item.forksCount)}
             {"\n"}
             <Text color='textSecondary' align='center' fontSize="subheading">Forks</Text>
         </Text>
         
-        <Text fontWeight="bold" align='center' fontSize="subheading">
+        <Text fontWeight="bold" align='center' fontSize="subheading" testID="reviewCount">
             {formatValue(item.reviewCount)}
             {"\n"}
             <Text color='textSecondary' align='center' fontSize="subheading">Reviews</Text>
         </Text>
-        <Text fontWeight="bold" align='center' fontSize="subheading">
+        <Text fontWeight="bold" align='center' fontSize="subheading" testID="rating">
             {item.ratingAverage}
             {"\n"}
             <Text color='textSecondary' align='center' fontSize="subheading">Rating</Text>

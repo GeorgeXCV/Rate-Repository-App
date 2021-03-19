@@ -19,9 +19,9 @@ const styles = StyleSheet.create({
 const RepoInformation = ({ item }) => {
     return (
         <View style={styles.information}>
-        <Text fontWeight="bold" fontSize="subheading">{item.fullName}</Text>
-        <Text color='textSecondary' fontSize="subheading">{item.description}</Text>
-        <Text color='textSecondary' fontSize="subheading" style={styles.language}>{item.language}</Text>
+        <Text fontWeight="bold" fontSize="subheading" testID="name">{item.fullName}</Text>
+        <Text color='textSecondary' fontSize="subheading" testID="description">{item.description}</Text>
+        <Text color='textSecondary' fontSize="subheading" style={styles.language} testID="language">{item.language}</Text>
         </View>
     )
 }
