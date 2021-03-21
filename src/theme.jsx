@@ -11,6 +11,7 @@ const theme = {
       itemBackground: 'white',
       textBorder: '#ccc',
       error: '#d73a4a',
+      rating: '#3792cb'
     },
     fontSizes: {
       body: 14,

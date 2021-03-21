@@ -2,11 +2,10 @@ import React from 'react';
 import { View, StyleSheet, ScrollView  } from 'react-native';
 import { Link } from "react-router-native";
 import Constants from 'expo-constants';
-import Text from './Text';
-import theme from '../theme';
+import theme from '../../theme';
 import AppBarTab from './AppBarTab'
-import AuthStorageContext from "../contexts/AuthStorageContext";
-import { GET_USER } from "../graphql/queries";
+import AuthStorageContext from "../../contexts/AuthStorageContext";
+import { GET_USER } from "../../graphql/queries";
 import { useContext } from 'react';
 import { useQuery, useApolloClient } from '@apollo/client';
 
@@ -49,18 +48,32 @@ const AppBar = () => {
         text={"Repositories"}
       />
       {loggedIn ? (
+        <>
+        <Link
+          to="/create-review"
+          component={AppBarTab}
+          text={"Create Review"}
+        />
         <Link
           to="/"
           component={AppBarTab}
           text={"Sign Out"}
           onPress={signOut}
         />
+        </>
       ) : (
+        <>
         <Link
           to="/signin"
           component={AppBarTab}
           text={"Sign in"}
         />
+        <Link
+          to="/signup"
+          component={AppBarTab}
+          text={"Sign up"}
+        />
+        </>
       )}
       </ScrollView>
   </View>
