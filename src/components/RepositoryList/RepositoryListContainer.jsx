@@ -34,6 +34,8 @@ class RepositoryListContainer extends React.Component {
         ItemSeparatorComponent={ItemSeparator}
         renderItem={({ item }) => <RepositoryItemContainer item={item} />}
         keyExtractor={item => item.id}
+        onEndReached={this.props.onEndReach}
+        onEndReachedThreshold={0.5}
       />
       </View>
     );

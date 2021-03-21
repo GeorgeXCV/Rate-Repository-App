@@ -8,15 +8,11 @@ import ItemSeparator from '../ItemSeparator'
 
 const Repository = () => {
   const { id } = useParams();
-  const { repository, loading } = useRepository(id)
+  const { repository, fetchMore } = useRepository(id, 5)
 
   if (!repository) {
     return null
   } 
-
-  if (loading) {
-    return <Text>Loading...</Text>
-  }
 
   const reviewNodes = repository.reviews
   ? repository.reviews.edges.map(edge => edge.node)
@@ -25,10 +21,12 @@ const Repository = () => {
   return (
       <FlatList
         data={reviewNodes}
-        renderItem={({ item }) => <ReviewItem review={item} />}
+        renderItem={({ item }) => <ReviewItem review={item} myReviews={false}/>}
         keyExtractor={item => item.id}
         ListHeaderComponent={() => <RepositoryItem item={repository} fullView={true} />}
         ItemSeparatorComponent={ItemSeparator}
+        onEndReached={fetchMore}
+        onEndReachedThreshold={0.5}
       />
   );
 

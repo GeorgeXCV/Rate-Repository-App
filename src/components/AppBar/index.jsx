@@ -54,6 +54,11 @@ const AppBar = () => {
           component={AppBarTab}
           text={"Create Review"}
         />
+          <Link
+          to="/my-reviews"
+          component={AppBarTab}
+          text={"My reviews"}
+        />
         <Link
           to="/"
           component={AppBarTab}
